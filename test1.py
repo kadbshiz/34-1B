@@ -23,6 +23,7 @@ class Window(QWidget):
         self.add_btn.clicked.connect(self.toggle_state)
 
         self.layout = QVBoxLayout()
+        
         self.layout.addWidget(self.label)
         self.layout.addWidget(self.add_btn)
 
