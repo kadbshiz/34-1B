@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import (
     QApplication,
-    QMainWindow,  # added
+    QMainWindow,
     QWidget,
     QPushButton,
     QGridLayout,
@@ -33,13 +33,13 @@ cursor.execute("""
 """)
 conn.commit()
 
-class QMainWindow(QWidget): 
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Моя библиотека")
         self.setGeometry(200, 250, 800, 500)
 
-        central = QWidget()                
+        central = QWidget()
         self.setCentralWidget(central)
         self.layout = QGridLayout()
         central.setLayout(self.layout)
@@ -133,34 +133,7 @@ class QMainWindow(QWidget):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
 
 app = QApplication(sys.argv)
-window = QMainWindow()
+window = MainWindow()
 window.show()
 window.load_books()
 sys.exit(app.exec())
-'''
-Нужно сделать:
-Создать окно QMainWindow
-Заголовок: "Моя библиотека"
-Размер: примерно 800x500
-Внизу — строка состояния (StatusBar) для сообщений.
-Слева — форма для ввода данных о книге:
-Название (QLineEdit)
-Автор (QLineEdit)
-Год (QSpinBox, диапазон от 1400 до 2025)
-Жанр (QComboBox, например: Роман, Детектив, Фантастика)
-Прочитано (QCheckBox)
-Под формой три кнопки:
-Добавить — добавляет книгу в таблицу.
-Очистить — очищает форму.
-Выход — закрывает приложение.
-Справа — таблица (QTableWidget) с 5 колонками:
-
-Название | Автор | Год | Жанр | Прочитано
-
-При добавлении книги появляется новая строка.
-Сортировка включена.
-Поведение:
-Если поля “Название” или “Автор” пустые → показать QMessageBox.warning("Ошибка", "Введите название и автора!")
-После добавления — вывести в статус-бар: "Добавлена книга: <название>"
-При очистке формы — статус: "Форма очищена"
-Кнопка “Выход” — закрывает приложение (self.close())'''
